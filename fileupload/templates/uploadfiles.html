@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload files</title>
+
+</head>
+<body>
+
+<form id="uploadfiles"  enctype="multipart/form-data" method="POST" action=".">{% csrf_token %}
+<h2>Upload the desired type of file</h2>
+<label>CATS:</label>
+<input type = "file" name = "cats" size = "30">
+<br>
+<br>
+<label>CATS-NI:</label>
+<input type = "file" name = "cats-ni" size = "30">
+<br>
+<br>
+<input type="submit" value="Upload">
+
+<br>
+<br>
+<br>
+</form>
+
+</body>
+</html>
