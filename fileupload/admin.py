@@ -4,25 +4,52 @@ from import_export.admin import ImportExportModelAdmin
 
 
 # Register your models here.
-from .models import CatsData, CatsNi, UploadCatsData, UploadCatsNi, UploadDocument
+from .models import CatsData, CatsNi, CheckFile#, UploadCatsData, UploadCatsNi, UploadDocument
 
 class CatsDataResource(resources.ModelResource):
 
     class Meta:
         model = CatsData
+        exclude = ('id',)
+        import_id_fields = ['email','phone']
+
 
 class CatsDataAdmin(ImportExportModelAdmin):
     resource_class = CatsDataResource
 
 
-class DocumentAdmin(admin.ModelAdmin): 
-	list_display = ('doc_name','button') 
+class CatsNiResource(resources.ModelResource):
+
+    class Meta:
+        model = CatsNi
+        exclude = ('id',)
+        import_id_fields = ['email','phone']
+
+
+class CatsNiAdmin(ImportExportModelAdmin):
+    resource_class = CatsNiResource
+
+
+class CheckFileResource(resources.ModelResource):
+
+	class Meta:
+		model = CheckFile
+		exclude = ('id')
+		import_id_fields = ['email','phone']
+
+
+class CheckFileAdmin(ImportExportModelAdmin):
+	resource_class = CheckFileResource
+
+# class DocumentAdmin(admin.ModelAdmin): 
+# 	list_display = ('doc_name','button') 
 
 admin.site.register(CatsData, CatsDataAdmin)
-admin.site.register(CatsNi)
-admin.site.register(UploadCatsData, DocumentAdmin)
-admin.site.register(UploadCatsNi, DocumentAdmin)
-admin.site.register(UploadDocument, DocumentAdmin)
+admin.site.register(CatsNi, CatsNiAdmin)
+admin.site.register(CheckFile, CheckFileAdmin)
+# admin.site.register(UploadCatsData, DocumentAdmin)
+# admin.site.register(UploadCatsNi, DocumentAdmin)
+# admin.site.register(UploadDocument, DocumentAdmin)
 
 # class MyModelAdmin(admin.ModelAdmin):
 #     def get_urls(self):
